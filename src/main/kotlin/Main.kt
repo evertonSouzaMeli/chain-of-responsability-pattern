@@ -1,7 +1,13 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import br.com.fiap.*
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main() {
+    var customBudget: CustomBudget = CustomBudget(100001.0)
+    var seller: SellerBudgetHandler = SellerBudgetHandler()
+
+    seller.setNextHandler(ManagerBudgetHandler())
+          .setNextHandler(DirectorBudgetHandler())
+          .setNextHandler(CeoBudgetHandler())
+
+    seller.handle(customBudget)
+
 }
